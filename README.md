@@ -80,8 +80,11 @@ isolation.
 
 ```bash
 cd ingredient_normalizer
+python -m venv .venv && source .venv/bin/activate
 pip install -r backend/requirements.txt
+cp .env.example .env   # optional local overrides
 python -m flask --app backend.api.app run
+# or: python -m backend.api.app
 # open http://127.0.0.1:5000
 ```
 
@@ -96,6 +99,25 @@ GET  /api/health      -> engine status, reference size, semantic availability
 POST /api/normalize   -> body {"text": "Water, Glycerine, ..."}  or  {"items": [...]}
                          returns per-item verdicts + a summary roll-up
 ```
+
+## Deploy (Render / Railway)
+
+Set the service **Root Directory** to `ingredient_normalizer`.
+
+| Setting | Value |
+|---------|--------|
+| Build command | `pip install -r backend/requirements.txt` |
+| Start command | Procfile (`web: gunicorn -b 0.0.0.0:$PORT "backend.api.app:app"`) |
+| Python | `runtime.txt` pins 3.12.x |
+
+Copy keys from `.env.example` into the host’s environment dashboard. There are no
+required secrets; the important free-tier knob is:
+
+- **`ENABLE_SEMANTIC=false`** — skip loading sentence-transformers / PyTorch so the
+  process fits in ~512 MB RAM. Matching falls back to exact + fuzzy only.
+
+The host injects `PORT`; gunicorn binds to `0.0.0.0:$PORT`. Do not commit a `.env`
+file (see the repo-root `.gitignore`).
 
 ## Scope & honesty notes
 

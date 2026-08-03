@@ -32,9 +32,16 @@ class ScoredCandidate:
 
 
 class SemanticMatcher:
-    def __init__(self, reference: InciReference, model_name: str):
+    def __init__(
+        self,
+        reference: InciReference,
+        model_name: str,
+        *,
+        enabled: bool = True,
+    ):
         self._reference = reference
         self._model_name = model_name
+        self._enabled = enabled
         self._model = None
         self._available = False
         self._forms: list[str] = []
@@ -44,6 +51,9 @@ class SemanticMatcher:
 
     # --- lifecycle ------------------------------------------------------
     def _try_initialize(self) -> None:
+        if not self._enabled:
+            self._available = False
+            return
         try:
             from sentence_transformers import SentenceTransformer
             import numpy as np  # noqa: F401  (used later; import-guard here)
