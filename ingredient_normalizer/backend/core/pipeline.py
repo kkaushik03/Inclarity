@@ -38,7 +38,11 @@ class NormalizationPipeline:
         self.reference = reference or InciReference.from_json(config.INCI_SOURCE)
         self.exact = ExactMatcher(self.reference)
         self.fuzzy = FuzzyMatcher(self.reference)
-        self.semantic = SemanticMatcher(self.reference, config.SEMANTIC_MODEL_NAME)
+        self.semantic = SemanticMatcher(
+            self.reference,
+            config.SEMANTIC_MODEL_NAME,
+            enabled=config.ENABLE_SEMANTIC,
+        )
 
     @property
     def semantic_available(self) -> bool:
