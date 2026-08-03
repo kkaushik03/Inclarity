@@ -1,0 +1,4 @@
+# Optional ML extras for local semantic matching.
+# Free-tier hosts should NOT install this — use lexical matching only.
+-r requirements.txt
+sentence-transformers>=2.2

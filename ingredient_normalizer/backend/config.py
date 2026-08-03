@@ -47,9 +47,15 @@ INCI_SOURCE = DATA_DIR / "sample_inci.json"
 # A small, fast sentence-transformer. Swap for a domain-tuned model to
 # improve accuracy on chemistry terms. If the model can't be loaded
 # (e.g. offline), the pipeline degrades gracefully to lexical matching.
-# Set ENABLE_SEMANTIC=false on free-tier hosts to avoid OOM from PyTorch.
+# Free-tier PaaS hosts (Render/Railway) default OFF to avoid PyTorch OOM;
+# override with ENABLE_SEMANTIC=true when you have enough RAM.
 SEMANTIC_MODEL_NAME = os.environ.get("SEMANTIC_MODEL_NAME", "all-MiniLM-L6-v2")
-ENABLE_SEMANTIC = _env_bool("ENABLE_SEMANTIC", True)
+_ON_PAAS = bool(
+    os.environ.get("RENDER")
+    or os.environ.get("RAILWAY_ENVIRONMENT")
+    or os.environ.get("DYNO")
+)
+ENABLE_SEMANTIC = _env_bool("ENABLE_SEMANTIC", default=not _ON_PAAS)
 
 # --- Ensemble weights ---------------------------------------------------
 # How much each signal contributes to the blended score for a candidate.

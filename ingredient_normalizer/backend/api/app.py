@@ -3,8 +3,9 @@ Flask application (HTTP layer only).
 
 Single responsibility: expose the normalization pipeline over HTTP and serve
 the static frontend. No matching logic lives here — every route delegates to
-the pipeline and serializes via schemas. The pipeline is built once at
-startup (loading the reference and embedding model is expensive) and reused.
+the pipeline and serializes via schemas. The pipeline is built once on first
+use (loading the reference — and optionally the embedding model — is
+expensive) and reused.
 """
 from pathlib import Path
 
@@ -16,11 +17,19 @@ from . import schemas
 FRONTEND_DIR = Path(__file__).resolve().parents[2] / "frontend"
 
 app = Flask(__name__, static_folder=None)
-pipeline = NormalizationPipeline()  # built once, reused across requests
+_pipeline: NormalizationPipeline | None = None
+
+
+def get_pipeline() -> NormalizationPipeline:
+    global _pipeline
+    if _pipeline is None:
+        _pipeline = NormalizationPipeline()
+    return _pipeline
 
 
 @app.get("/api/health")
 def health():
+    pipeline = get_pipeline()
     return jsonify(
         {
             "status": "ok",
@@ -46,13 +55,14 @@ def normalize():
     if not items:
         return jsonify({"error": "No ingredients provided."}), 400
 
-    results = pipeline.normalize_list(items)
+    results = get_pipeline().normalize_list(items)
     return jsonify(
         {
             "summary": schemas.summarize(results),
             "results": [schemas.item_result_to_dict(r) for r in results],
         }
     )
+
 
 # --- static frontend ----------------------------------------------------
 
@@ -68,6 +78,8 @@ def app_page():
 
 @app.get("/<path:filename>")
 def static_files(filename: str):
+    if filename.startswith("api/"):
+        return jsonify({"error": "Not found"}), 404
     return send_from_directory(FRONTEND_DIR, filename)
 
 
