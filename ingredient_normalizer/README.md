@@ -82,14 +82,16 @@ isolation.
 cd ingredient_normalizer
 python -m venv .venv && source .venv/bin/activate
 pip install -r backend/requirements.txt
+# optional semantic matching (heavy — not for free-tier hosts):
+# pip install -r backend/requirements-ml.txt
 cp .env.example .env   # optional local overrides
 python -m flask --app backend.api.app run
 # or: python -m backend.api.app
 # open http://127.0.0.1:5000
 ```
 
-First run downloads the sentence-transformer weights (~90 MB). Without network
-access the app still runs — it reports "lexical matching only" and uses the
+First run with ML extras downloads the sentence-transformer weights (~90 MB).
+Without them the app still runs — it reports "lexical matching only" and uses the
 fuzzy/exact stages.
 
 ### API
@@ -115,6 +117,10 @@ required secrets; the important free-tier knob is:
 
 - **`ENABLE_SEMANTIC=false`** — skip loading sentence-transformers / PyTorch so the
   process fits in ~512 MB RAM. Matching falls back to exact + fuzzy only.
+  (On Render/Railway this already defaults to off. Do **not** install
+  `requirements-ml.txt` on free hosts — that pulls multi‑GB CUDA/Torch wheels.)
+
+For local semantic matching: `pip install -r backend/requirements-ml.txt`.
 
 The host injects `PORT`; gunicorn binds to `0.0.0.0:$PORT`. Do not commit a `.env`
 file (see the repo-root `.gitignore`).

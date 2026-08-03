@@ -43,6 +43,9 @@ const els = {
 async function checkHealth() {
   try {
     const res = await fetch("/api/health");
+    if (!res.ok) {
+      throw new Error(`HTTP ${res.status}`);
+    }
     const data = await res.json();
     const mode = data.semantic_available
       ? "semantic + lexical matching"
@@ -50,9 +53,11 @@ async function checkHealth() {
     els.status.classList.remove("error");
     els.statusText.textContent =
       `Engine ready \u2022 ${data.reference_size} reference ingredients \u2022 ${mode}`;
-  } catch {
+  } catch (err) {
     els.status.classList.add("error");
-    els.statusText.textContent = "Could not reach the matching engine.";
+    const detail = err && err.message ? ` (${err.message})` : "";
+    els.statusText.textContent =
+      `Could not reach the matching engine.${detail}`;
   }
 }
 
