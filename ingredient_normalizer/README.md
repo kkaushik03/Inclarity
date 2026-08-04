@@ -39,8 +39,8 @@ lexical matching instead of failing.
 | Blended score        | Decision    | Meaning                                   |
 |----------------------|-------------|-------------------------------------------|
 | ≥ 0.90               | `accepted`  | auto-accept                               |
-| 0.60 – 0.90          | `review`    | surface top-k suggestions for a human     |
-| < 0.60               | `unmatched` | nothing guessed; flagged for a human      |
+| 0.70 – 0.90          | `review`    | surface top-k suggestions for a human     |
+| < 0.70               | `unmatched` | nothing guessed; flagged for a human      |
 
 Thresholds and ensemble weights are all in `backend/config.py`.
 

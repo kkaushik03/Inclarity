@@ -17,6 +17,7 @@ def item_result_to_dict(result: ItemResult) -> dict:
         "matched_inci": result.matched_inci,
         "confidence": result.confidence,
         "stage": result.stage,
+        "latency_ms": result.latency_ms,
         "candidates": result.candidates,
     }
 

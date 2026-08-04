@@ -12,6 +12,7 @@ Keeping orchestration separate from the matchers means any stage can be
 swapped, reordered, or tested in isolation without touching the others.
 """
 from dataclasses import dataclass, field
+import time
 
 from .. import config
 from ..data.inci_reference import InciReference
@@ -31,6 +32,7 @@ class ItemResult:
     confidence: float
     candidates: list[dict] = field(default_factory=list)
     stage: str = ""            # which stage decided: exact / ensemble / none
+    latency_ms: float = 0.0    # wall time for this lookup
 
 
 class NormalizationPipeline:
@@ -50,6 +52,7 @@ class NormalizationPipeline:
 
     # --- single item ----------------------------------------------------
     def normalize_item(self, raw: str) -> ItemResult:
+        t0 = time.perf_counter()
         variants = preprocess.variants(raw)
         primary = variants[0] if variants else ""
 
@@ -65,6 +68,7 @@ class NormalizationPipeline:
                     confidence=1.0,
                     candidates=[{"inci": hit, "score": 1.0}],
                     stage="exact",
+                    latency_ms=round((time.perf_counter() - t0) * 1000, 3),
                 )
 
         # Stage 2: fuzzy + semantic over the primary variant, then ensemble.
@@ -90,7 +94,8 @@ class NormalizationPipeline:
                 }
                 for c in verdict.candidates
             ],
-            stage="ensemble",
+            stage="ensemble" if merged else "none",
+            latency_ms=round((time.perf_counter() - t0) * 1000, 3),
         )
 
     # --- batch ----------------------------------------------------------

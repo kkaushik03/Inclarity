@@ -70,7 +70,9 @@ SEMANTIC_WEIGHT = _env_float("SEMANTIC_WEIGHT", 0.55)
 #   >= REVIEW_THRESHOLD -> surface top-k suggestions for a human to confirm
 #   <  REVIEW_THRESHOLD -> flag as unmatched (nothing is silently guessed)
 AUTO_ACCEPT_THRESHOLD = _env_float("AUTO_ACCEPT_THRESHOLD", 0.90)
-REVIEW_THRESHOLD = _env_float("REVIEW_THRESHOLD", 0.60)
+# Slightly stricter than 0.60 so weak fuzzy hits on unknowns stay unmatched
+# rather than entering the review tier (see eval/RESULTS.md).
+REVIEW_THRESHOLD = _env_float("REVIEW_THRESHOLD", 0.70)
 
 # Number of candidate suggestions to return for review-tier matches.
 TOP_K = _env_int("TOP_K", 3)

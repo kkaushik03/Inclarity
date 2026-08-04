@@ -126,7 +126,7 @@
     { "inci": "Phenyl Trimethicone", "category": "silicone", "synonyms": [] },
     { "inci": "Dimethicone Crosspolymer", "category": "silicone/texture agent", "synonyms": [] },
 
-    { "inci": "Triethanolamine", "category": "pH adjuster", "synonyms": ["tea", "trolamine"] },
+    { "inci": "Triethanolamine", "category": "pH adjuster", "synonyms": ["trolamine", "triethanol amine"] },
     { "inci": "Sodium Hydroxide", "category": "pH adjuster", "synonyms": ["lye", "caustic soda"] },
     { "inci": "Disodium EDTA", "category": "chelator", "synonyms": ["edta disodium salt"] },
     { "inci": "Tetrasodium EDTA", "category": "chelator", "synonyms": [] },

@@ -1,0 +1,115 @@
+raw_input,expected_inci,note
+Aqua (Water),Aqua,parenthetical
+WATER,Aqua,casing
+  purified water ,Aqua,whitespace
+eau,Aqua,translation
+Glycerine,Glycerin,spelling variant
+glycrol,Glycerin,typo
+GLYCEROL,Glycerin,casing synonym
+Vitamin C,Ascorbic Acid,common name
+L-Ascorbic Acid,Ascorbic Acid,chem form
+vit c,Ascorbic Acid,abbrev
+Vitamin E,Tocopherol,common name
+Tocopheryl Acetate,Tocopheryl Acetate,exact INCI
+vitamin e acetate,Tocopheryl Acetate,synonym
+Vitamin B3,Niacinamide,common name
+nicotinamide,Niacinamide,synonym
+Hyaluronic Acid,Sodium Hyaluronate,common name
+HA,Sodium Hyaluronate,abbrev
+Shea Butter,Butyrospermum Parkii Butter,common name
+Butyrospermum Parkii (Shea) Butter,Butyrospermum Parkii Butter,label form
+shea,Butyrospermum Parkii Butter,short common
+Cocoa Butter,Theobroma Cacao Seed Butter,common name
+Coconut Oil,Cocos Nucifera Oil,common name
+Jojoba Oil,Simmondsia Chinensis Seed Oil,common name
+Sunflower Seed Oil,Helianthus Annuus Seed Oil,common name
+Sweet Almond Oil,Prunus Amygdalus Dulcis Oil,common name
+Argan Oil,Argania Spinosa Kernel Oil,common name
+Aloe Vera,Aloe Barbadensis Leaf Juice,common name
+aloe,Aloe Barbadensis Leaf Juice,short
+Green Tea Extract,Camellia Sinensis Leaf Extract,common name
+green tea,Camellia Sinensis Leaf Extract,short
+Cica,Centella Asiatica Extract,trade/common
+gotu kola,Centella Asiatica Extract,common name
+Chamomile Extract,Chamomilla Recutita Flower Extract,common name
+Tea Tree Oil,Melaleuca Alternifolia Leaf Oil,common name
+Lavender Oil,Lavandula Angustifolia Oil,common name
+BHA,Salicylic Acid,abbrev
+salicylic acid,Salicylic Acid,casing
+AHA,Glycolic Acid,abbrev ambiguous but mapped in ref
+glycolic acid,Glycolic Acid,exact
+Phenoxyethanol,Phenoxyethanol,exact
+SLS,Sodium Lauryl Sulfate,abbrev
+SLES,Sodium Laureth Sulfate,abbrev
+CAPB,Cocamidopropyl Betaine,abbrev
+Tween 20,Polysorbate 20,trade name
+Tween 80,Polysorbate 80,trade name
+Dimethicone,Dimethicone,exact
+silicone,Dimethicone,loose common
+PDMS,Dimethicone,abbrev
+ZnO,Zinc Oxide,abbrev
+Titanium Dioxide,Titanium Dioxide,exact
+Octinoxate,Ethylhexyl Methoxycinnamate,USAN
+Avobenzone,Butyl Methoxydibenzoylmethane,USAN
+Oxybenzone,Benzophenone-3,USAN
+Fragrance,Parfum,common name
+Parfum,Parfum,exact
+perfume,Parfum,synonym
+Iron Oxide Red,CI 77491,common name
+FD&C Yellow 5,CI 19140,color name
+Beeswax,Cera Alba,common name
+Carnauba Wax,Copernicia Cerifera Cera,common name
+CoQ10,Ubiquinone,abbrev
+coenzyme q10,Ubiquinone,synonym
+Snail Mucin,Snail Secretion Filtrate,common name
+Ceramide 3,Ceramide NP,alt name
+Argireline,Acetyl Hexapeptide-8,trade name
+Copper Peptide,Copper Tripeptide-1,common name
+GHK-Cu,Copper Tripeptide-1,abbrev
+Panthenol,Panthenol,exact
+Provitamin B5,Panthenol,synonym
+Retinol,Retinol,exact
+Vitamin A,Retinol,common name
+Bakuchiol,Bakuchiol,exact
+Xanthan Gum,Xanthan Gum,exact
+xanthan,Xanthan Gum,short
+Carbomer,Carbomer,exact
+Disodium EDTA,Disodium EDTA,exact
+edta disodium salt,Disodium EDTA,synonym
+Sodium Hydroxide,Sodium Hydroxide,exact
+lye,Sodium Hydroxide,common
+MCT Oil,Caprylic/Capric Triglyceride,trade/common
+Fractionated Coconut Oil,Caprylic/Capric Triglyceride,common name
+Salt,Sodium Chloride,common
+Baking Soda,Sodium Bicarbonate,common
+Epsom Salt,Magnesium Sulfate,common
+Rosehip Oil,Rosa Canina Fruit Oil,common
+Castor Oil,Ricinus Communis Seed Oil,common
+Olive Oil,Olea Europaea Fruit Oil,common
+Licorice Root Extract,Glycyrrhiza Glabra Root Extract,common
+Rosemary Extract,Rosmarinus Officinalis Leaf Extract,common
+Allantoin,Allantoin,exact
+Bisabolol,Bisabolol,exact
+Squalane,Squalane,exact
+Beta Glucan,Beta-Glucan,spacing
+Sodium Ascorbyl Phosphate,Sodium Ascorbyl Phosphate,exact
+SAP,Sodium Ascorbyl Phosphate,abbrev
+Retinaldehyde,Retinal,synonym
+Vitamin A Palmitate,Retinyl Palmitate,common
+GMS,Glyceryl Stearate,abbrev
+Cetyl Alcohol,Cetyl Alcohol,exact
+Cetearyl Alcohol,Cetearyl Alcohol,exact
+Phenoxyethyl Alcohol,Phenoxyethanol,synonym
+Methyl Paraben,Methylparaben,spacing
+Octisalate,Ethylhexyl Salicylate,USAN
+Tea Tree,Melaleuca Alternifolia Leaf Oil,short common
+CI 77891,CI 77891,color index exact entry
+tio2,Titanium Dioxide,abbrev
+Unicorn Extract,,unknown
+Fairy Dust Oil,,unknown
+Polyquaternium-999,,unknown
+Secret Complex Blend,,unknown
+Dragonfruit Peptide XYZ,,unknown
+Proprietary Moisturizing Agent,,unknown
+qwerty ascorbate,,unknown nonsense
+XYZ-404 Active,,unknown

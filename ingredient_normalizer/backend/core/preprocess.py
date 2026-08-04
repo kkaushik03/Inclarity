@@ -21,8 +21,8 @@ _ABBREVIATIONS = {
 # Marks and boilerplate that carry no matching signal.
 _NOISE_PATTERN = re.compile(
     r"[*\u2020\u2021\u00ae\u2122\u00b0]"        # * dagger double-dagger (R) (TM) degree
-    r"|\d+(\.\d+)?\s*%"                          # percentages: 2%, 0.5 %
-    r"|\bci\s?\d{5}\b",                          # colour index codes handled elsewhere
+    r"|\d+(\.\d+)?\s*%",                         # percentages: 2%, 0.5 %
+    # Colour-index codes (CI 77891) are kept — they are real matching keys.
     flags=re.IGNORECASE,
 )
 
